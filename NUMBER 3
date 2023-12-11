@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class Stack {
+    float* stack;
+    int top;
+    int size;
+public:
+    Stack(int size) {
+        this->size = size;
+        stack = new float[size];
+        top = -1;
+    }
+    void push(float element) {
+        if (top == size - 1) {
+            cout << "Stack Overflow" << endl;
+            return;
+        }
+        top++;
+        stack[top] = element;
+    }
+    float pop() {
+        if (top == -1) {
+            cout << "Stack Underflow" << endl;
+            return -1;
+        }
+        float element = stack[top];
+        top--;
+        return element;
+    }
+    ~Stack() {
+        delete[] stack;
+    }
+};
+
+int main() {
+    Stack s(5);
+    s.push(1.1);
+    s.push(2.2);
+    s.push(3.3);
+    s.push(4.4);
+    s.push(5.5);
+    cout << s.pop() << endl;
+    cout << s.pop() << endl;
+    cout << s.pop() << endl;
+    cout << s.pop() << endl;
+    cout << s.pop() << endl;
+    cout << s.pop() << endl;
+    return 0;
+}
